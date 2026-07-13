@@ -1,0 +1,37 @@
+<!DOCTYPE html>
+<html><head><meta charset="UTF-8"><meta name="viewport" content="width=device-width,initial-scale=1">
+<title>Happy Birthday Mom</title>
+<style>
+body{margin:0;overflow-x:hidden;font-family:Arial;background:linear-gradient(135deg,#ffccd5,#ffc2d1);color:#fff;text-align:center}
+#fireworks{position:fixed;inset:0;pointer-events:none}
+.hero{padding:70px 20px;position:relative;z-index:2}
+h1{font-size:56px}.msg{max-width:800px;margin:auto;font-size:22px}
+.gallery{display:grid;grid-template-columns:repeat(auto-fit,minmax(220px,1fr));gap:18px;padding:30px}
+.gallery img{width:100%;height:280px;object-fit:cover;border-radius:18px}
+.heart{position:fixed;bottom:-30px;font-size:24px;animation:f 8s linear infinite}
+@keyframes f{to{transform:translateY(-110vh);opacity:0}}
+button{padding:14px 28px;border:none;border-radius:30px}
+</style></head><body>
+<canvas id="fireworks"></canvas>
+<div class="hero">
+<h1 id="t"></h1>
+<p class="msg">Dear Mom ❤️<br>Happy Birthday to the most amazing mother. Thank you for your endless love, care, strength and sacrifices. You are my greatest blessing. May your day be filled with happiness, laughter, and beautiful memories. I love you forever. 💖</p>
+<button onclick="alert('🎉 Happy Birthday Mom! I Love You ❤️')">Surprise 🎁</button>
+</div>
+<h2>📸 Our Beautiful Memories</h2>
+<div class="gallery">
+<img src="love.jpeg">
+<img src="mom2.jpeg.jpeg">
+<img src="mom3.jpeg">
+<img src="mom4.jpeg">
+<img src="mom5.jpeg">
+</div>
+<script>
+let s="🎉 Happy Birthday Mom! ❤️",i=0;setInterval(()=>{if(i<s.length)t.innerHTML+=s[i++]},120);
+setInterval(()=>{let h=document.createElement('div');h.className='heart';h.textContent=['❤️','💖','💕','🌸'][Math.floor(Math.random()*4)];h.style.left=Math.random()*100+'vw';document.body.appendChild(h);setTimeout(()=>h.remove(),8000)},300);
+const c=fireworks,x=c.getContext('2d');function rs(){c.width=innerWidth;c.height=innerHeight}rs();onresize=rs;let p=[];
+function ex(){let X=Math.random()*c.width,Y=Math.random()*c.height*.6,col=['#fff','#ff0','#0f0','#0ff','#f0f','#f44'][Math.floor(Math.random()*6)];
+for(let i=0;i<120;i++){let a=Math.random()*6.28,v=Math.random()*6+2;p.push({x:X,y:Y,vx:Math.cos(a)*v,vy:Math.sin(a)*v,l:100,col});}}
+function an(){x.clearRect(0,0,c.width,c.height);p=p.filter(o=>o.l-->0);p.forEach(o=>{o.x+=o.vx;o.y+=o.vy;o.vy+=.05;x.fillStyle=o.col;x.beginPath();x.arc(o.x,o.y,2,0,7);x.fill();});requestAnimationFrame(an)}
+an();for(let i=0;i<8;i++)setTimeout(ex,i*700);setInterval(ex,2500);
+</script></body></html>
